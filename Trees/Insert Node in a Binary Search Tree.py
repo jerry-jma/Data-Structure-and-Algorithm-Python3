@@ -53,6 +53,7 @@ class Solution:
     @return: The root of the new binary search tree.
     """
     def insertNode(self, root, node):
+
         if not root:
             return node
 
