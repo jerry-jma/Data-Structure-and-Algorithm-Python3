@@ -52,14 +52,31 @@ class Solution:
     @param: node: insert this node into the binary search tree
     @return: The root of the new binary search tree.
     """
-    def insertNode(self, root, node):
+    # def insertNode(self, root, node):
 
+    #     if not root:
+    #         return node
+
+    #     if node.val > root.val:
+    #         root.right =self.insertNode(root.right, node)
+    #     else:
+    #         root.left = self.insertNode(root.left, node)
+
+    #     return root
+
+    def insertNode(self, root, node):
         if not root:
             return node
 
-        if node.val > root.val:
-            root.right =self.insertNode(root.right, node)
-        else:
-            root.left = self.insertNode(root.left, node)
+        curr_root = root
+        while curr_root:
+            if node.val > curr_root.val:
+                if not curr_root.right:
+                    curr_root.right = node
+                curr_root = curr_root.right
+            else:
+              if not curr_root.left:
+                  curr_root.left = node
+              curr_root = curr_root.left
 
         return root
