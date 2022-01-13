@@ -1,0 +1,11 @@
+1. Instead of "git add ." + "git commit -m 'message'", I can do git commit -am "message here" (This won't work in new files that are newly created, since you have to make sure they are tracked remotely first by doing git add [<file>])
+
+2. Do "git status" first before doing "git add" to see which file you have made changes on, and also it's very convenient to copy and paste the path to "git add [<path>]" when you make changes locally in some files for personal use but don't want to affect the team repo.
+
+3. "git status" -> "git add" -> "git commit" -> "git pull" -> "git push". This process prevents me from having to fix so many merge conflicts by doing a pull first.
+
+3. "git log" -> check all the recent commits and if you want to reset the HEAD to one of the recent commits: "git reset --soft [<commit>]", which you can copy the commit reference number from "git log". (Disclaimer: there are a lot of combination for "git reset" but not gonna get into it)
+
+4. "git commit --amend": change the most recent commit messages. Our company is currently trying to enforce engineers to write better commit messages, so they have set up a certain format we have to follow. I wasn't aware of that at first, so I kept having trouble pushing my code, but this command reaaally comes in handy and it fixed the issue I was having.
+
+5. Last but not least, this is my personal favorite, 'cause this reminds me of array. "git stash" -> stash the changes you've made but don't wanna commit, 'cause it would show up in the repo later on if you commit it, and then you pull and push all the code that you need, then you do "git stash pop" -> POP that stash to bring the changes back locally.
