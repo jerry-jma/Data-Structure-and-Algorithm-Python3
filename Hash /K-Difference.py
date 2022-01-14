@@ -31,16 +31,16 @@ class Solution:
     def KDifference(self, nums, target):
         # write your code here
         counter = 0
-        set0 = set()
-        for num in nums:
-            if num - target in set0:
-                counter += 1
-            if num + target in set0:
-                counter += 1
-            set0.add(num)
-        print(set0)
-        return counter
+        hash_set = ()
 
+        for num in nums:
+            if target - num in hash_set:
+              counter += 1
+            if target + num in hash_set:
+              counter += 1
+            hash_set.add(num)
+
+        return counter
 
 
 
