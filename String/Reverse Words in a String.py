@@ -55,4 +55,4 @@ class Solution:
 
         converted = s.split()
         converted.reverse()
-        return ''.join(converted)
+        return ' '.join(converted)
