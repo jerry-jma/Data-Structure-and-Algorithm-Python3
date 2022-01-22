@@ -62,3 +62,27 @@ class Solution:
 
         if node.right:
             self.helper(node.right, target - node.val, path + [node.val], result)
+
+
+    # def binaryTreePathSum(self, root, target):
+    #     results = []
+    #     path = []
+    #     self.dfs(root, results, path, 0, target)
+    #     return results
+
+    # def dfs(self, root, results, path, curr_total, target):
+    #     if not root:
+    #         return
+
+    #     path.append(root.val)
+    #     curr_total += root.val
+
+    #     if not root.left and not root.right and curr_total == target:
+    #         results.append(path[::1])
+
+    #     self.dfs(root.left, results, path, curr_total, target)
+    #     self.dfs(root.right, results, path, curr_total, target)
+
+    #     print('above', curr_total, path, results)
+    #     path.pop()
+    #     print('below', curr_total, path, results)
