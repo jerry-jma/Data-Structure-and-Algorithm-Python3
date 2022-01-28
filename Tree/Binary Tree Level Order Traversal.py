@@ -102,3 +102,30 @@ class Solution:
             # results.append(level)
 
         return results
+
+
+        # solution 3: Suing DummyNode
+        if not root:
+            return []
+        results = []
+        level = []
+        queue = collections.deque([root, None])
+        # queue.append(root)
+        # queue.append(None)
+
+        while queue:
+            node = queue.popleft()
+            if node is None:
+                results.append(level)
+                level = []
+                if queue:
+                    queue.append(None)
+                continue
+            level.append(node.val)
+
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+
+        return results
