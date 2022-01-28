@@ -78,3 +78,27 @@ class Solution:
     #         results.append(level)
 
     #     return results
+
+        if not root:
+            return []
+
+        results = []
+        queue =[root]
+
+        while queue:
+            next_queue = []
+            # level = []
+            results.append([node.val for node in queue])
+            # could just use the commented out ones
+            for node in queue:
+                # level.append(node.val)
+                if node.left:
+                    next_queue.append(node.left)
+                if node.right:
+                    next_queue.append(node.right)
+
+            queue = next_queue
+
+            # results.append(level)
+
+        return results
