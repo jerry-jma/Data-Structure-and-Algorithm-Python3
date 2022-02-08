@@ -67,3 +67,24 @@ class Solution:
                     results.add(neighbor)
 
         return results
+
+
+        # solution 2: using dfs
+    def cloneGraph(self, node):
+        if not node:
+            return
+
+        old_to_new = {}
+        return self.dfs(node, old_to_new)
+
+    def dfs(self, node, old_to_new):
+        if node in old_to_new:
+            return old_to_new[node]
+
+        copy_node = UndirectedGraphNode(node.label)
+        old_to_new[node] = copy_node
+
+        for neighbor in node.neighbors:
+            copy_node.neighbors.append(self.dfs(neighbor, old_to_new))
+
+        return copy_node
