@@ -63,7 +63,69 @@ class Solution:
 
         return lower.val
 
-        # solution 2: recursive
+    # # solution 2: recursive (divide and conquer)
+    # def closestValue(self, root, target):
+    #     if not root:
+    #         return None
+
+    #     lower = self.get_lower_bound(root, target)
+    #     upper = self.get_upper_bound(root, target)
+
+    #     if lower is None:
+    #         return upper.val
+    #     if upper is None:
+    #         return lower.val
+
+    #     if abs(upper.val - target) <= abs(target - lower.val):
+    #         return upper.val
+    #     return lower.val
+
+    # def get_lower_bound(self, root, target):
+    #     if root is None:
+    #         return None
+
+    #     if root.val < target:
+    #         return self.get_lower_bound(root.right, target)
+
+    #     lower = self.get_lower_bound(root.left, target)
+    #     return root if lower is None else lower
+
+    # def get_upper_bound(self, root, target):
+    #     if root is None:
+    #         return None
+
+    #     if root.val > target:
+    #         return self.get_upper_bound(root.left, target)
+
+    #     upper = self.get_upper_bound(root.right, target)
+    #     return root if upper is None else upper
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
