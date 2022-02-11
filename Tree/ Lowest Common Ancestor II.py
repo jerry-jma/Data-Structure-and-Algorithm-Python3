@@ -49,16 +49,16 @@ class Solution:
     @return: The lowest common ancestor of A and B
     """
     def lowestCommonAncestorII(self, root, A, B):
-        ancesters = set()
+        ancestors = set()
 
         curr = A
         while curr:
-            ancesters.add(curr)
+            ancestors.add(curr)
             curr = curr.parent
 
         curr = B
         while curr:
-            if curr in ancesters:
+            if curr in ancestors:
                 return curr
             curr = curr.parent
 
