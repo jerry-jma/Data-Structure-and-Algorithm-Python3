@@ -40,3 +40,39 @@
 # Challenge
 # Do it in-place without any extra memory.
 
+"""
+Definition of TreeNode:
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left, self.right = None, None
+"""
+
+class Solution:
+    """
+    @param root: a TreeNode, the root of the binary tree
+    @return: nothing
+    """
+    def flatten(self, root):
+        self.flatten_and_return_last(root)
+
+    def flatten_and_return_last(self, root):
+        if root is None:
+            return None
+
+        left_last = self.flatten_and_return_last(root.left)
+        right_last = self.flatten_and_return_last(root.right)
+
+        if left_last is not None:
+            left_last.right = root.right
+            root.right = root.left
+            root.left = None
+
+        return right_last or left_last or root
+        # if right_last:
+        #     return right_last
+        # elif left_last:
+        #     return left_last
+        # else:
+        #     return root
+
