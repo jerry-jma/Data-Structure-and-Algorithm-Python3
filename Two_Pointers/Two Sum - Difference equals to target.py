@@ -59,4 +59,21 @@ class Solution:
             return end
         return -1
 
-    # solution 2: better solution, two pointers
+    # solution 2: better solution, two pointers 同向双指针
+    def two_sum7(self, nums: List[int], target: int) -> List[int]:
+        if not nums:
+            return [-1, -1]
+
+        target = abs(target)
+        j = 1
+        for i in range(len(nums)):
+            if i == j:
+                j += 1
+            while j < len(nums) and nums[j] - nums[i] < target:
+                j += 1
+            if j >= len(nums):
+                break
+            if nums[j] - nums[i] == target:
+                return [nums[i], nums[j]]
+
+        return [-1, -1]
