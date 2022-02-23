@@ -91,3 +91,20 @@ class Solution:
         return min(dp[n-1])
 
 
+    def minimum_total(self, triangle: List[List[int]]) -> int:
+        if not triangle or not triangle[0]:
+            return -1
+        n = len(triangle)
+        dp = [[0] * n, [0]*n]
+
+        dp[0][0] = triangle[0][0]
+
+        for row in range(1, n):
+            dp[row%2][0] = dp[(row-1)%2][0] + triangle[row][0]
+            dp[row%2][row] = dp[(row-1)%2][row-1] + triangle[row][row]
+            for col in range(1, row):
+                dp[row%2][col] = min(dp[(row-1)%2][col], dp[(row-1)%2][col-1]) + triangle[row][col]
+
+        return min(dp[(n-1)%2])
+
+
