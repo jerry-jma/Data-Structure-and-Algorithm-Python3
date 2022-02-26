@@ -82,3 +82,20 @@ class Solution:
     #         index += 1
 
     #     return queue
+
+    # solution 3: BFS 选或不选
+    # def subsets(self, nums):
+    #     if not nums:
+    #         return [[]]
+
+    #     queue = [[]]
+
+    #     for num in sorted(nums):
+    #         size = len(queue)
+    #         for i in range(size):
+    #             subset = list(queue[i])
+    #             subset.append(num)
+    #             queue.append(subset)
+    #             # queue.append(queue[i] + [num])
+
+    #     return queue
