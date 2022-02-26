@@ -65,3 +65,20 @@ class Solution:
             self.dfs(nums, i+1, combination, combinations)
             combination.pop()
 
+    # solution 2: BFS
+    # def subsets(self, nums):
+    #     if not nums:
+    #         return [[]]
+
+    #     queue = [[]]
+    #     index = 0
+
+    #     while index < len(queue):
+    #         subset = queue[index]
+    #         for num in nums:
+    #             if subset and subset[-1] >= num:
+    #                 continue
+    #             queue.append(subset + [num])
+    #         index += 1
+
+    #     return queue
