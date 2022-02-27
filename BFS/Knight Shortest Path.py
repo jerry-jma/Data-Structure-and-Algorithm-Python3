@@ -89,5 +89,62 @@ class Solution:
         if grid[x][y] == 0:
             return True
 
+    #  # solution 2: two-directional BFS
+    # def shortestPath(self, grid, source, destination):
+    #     if not grid or not grid[0]:
+    #         return -1
+    #     if grid[destination.x][destination.y] == 1:
+    #         return -1
+    #     if (source.x, source.y) == (destination.x, destination.y):
+    #         return 0
+
+    #     forward_queue = collections.deque([(source.x, source.y)])
+    #     forward_visited = set([(source.x, source.y)])
+    #     backward_queue = collections.deque([(destination.x, destination.y)])
+    #     backward_visisted = set([(destination.x, destination.y)])
+
+    #     distance = 0
+
+    #     while forward_queue and backward_queue:
+    #         distance += 1
+    #         if self.extend_queue(grid, forward_queue, forward_visited, backward_visisted):
+    #             return distance
+    #         print(forward_visited, backward_visisted)
+
+    #         distance += 1
+    #         if self.extend_queue(grid, backward_queue, backward_visisted, forward_visited):
+    #             return distance
+
+    #     return -1
+
+
+    # def extend_queue(self, grid, queue, visited, opposite_visited):
+    #     size = len(queue)
+    #     for _ in range(size):
+    #         x, y = queue.popleft()
+    #         for delta_x, delta_y in Directions:
+    #             new_x = delta_x + x
+    #             new_y = delta_y + y
+
+    #             if not self.is_valid(grid, new_x, new_y):
+    #                 continue
+    #             if (new_x,new_y) in visited:
+    #                 continue
+    #             if (new_x, new_y) in opposite_visited:
+    #                 return True
+    #             queue.append((new_x, new_y))
+    #             visited.add((new_x, new_y))
+
+
+    #     return False
+
+    # def is_valid(self, grid, x, y):
+    #     if not (0 <= x < len(grid) and 0 <= y < len(grid[0])):
+    #         return False
+    #     if grid[x][y] == 1:
+    #         return False
+    #     if grid[x][y] == 0:
+    #         return True
+
 
 
