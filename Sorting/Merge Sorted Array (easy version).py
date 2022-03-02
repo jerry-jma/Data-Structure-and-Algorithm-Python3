@@ -65,3 +65,29 @@ class Solution:
 
         for i in range(len(A)):
             A[i] = arr[i]
+# # Solution 2: compare the biggest first and fill from last index
+    def mergeSortedArray(self, A, m, B, n):
+        curr_index = m + n - 1
+        i = m - 1
+        j = n - 1
+
+        while i >= 0 and j >= 0:
+            if A[i] > B[j]:
+                A[curr_index] = A[i]
+                i -= 1
+                curr_index -= 1
+            else:
+                A[curr_index] = B[j]
+                j -= 1
+                curr_index -= 1
+
+        while i >= 0:
+            A[curr_index] = A[i]
+            i -= 1
+            curr_index -= 1
+
+        while j >= 0:
+            A[curr_index] = B[j]
+            j -= 1
+            curr_index -= 1
+
