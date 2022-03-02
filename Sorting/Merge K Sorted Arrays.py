@@ -57,3 +57,41 @@ class Solution:
                 heapq.heappush(heap, (arrays[idx][curr_idx+1], idx, curr_idx+1))
 
         return result
+
+   # Solution 2: Using Merge Sort
+    def mergek_sorted_arrays(self, arrays: List[List[int]]) -> List[int]:
+        if not arrays:
+            return []
+
+        return self.mergeAll(arrays, 0, len(arrays) - 1)
+
+    def mergeAll(self, arrays, start, end):
+        if start == end:
+            return arrays[start]
+
+        mid = (start + end) // 2
+        left = self.mergeAll(arrays, start, mid)
+        right = self.mergeAll(arrays, mid + 1, end)
+        return self.mergeTwo(left, right)
+
+    def mergeTwo(self, arr1, arr2):
+        i, j = 0, 0
+        result = []
+
+        while i < len(arr1) and j < len(arr2):
+            if arr1[i] < arr2[j]:
+                result.append(arr1[i])
+                i += 1
+            else:
+                result.append(arr2[j])
+                j += 1
+
+        while i < len(arr1):
+            result.append(arr1[i])
+            i += 1
+
+        while j < len(arr2):
+            result.append(arr2[j])
+            j += 1
+
+        return result
