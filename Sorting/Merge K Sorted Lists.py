@@ -79,3 +79,32 @@ class Solution:
     #         tail.next = list2
 
     #     return dummy.next
+
+
+    # Solution 2: Using Heap, note that heapq doesn't support ListNode
+    # which is why, we add a counter each time in the tuple
+    # import heapq on the top
+    def mergeKLists(self, lists):
+        if not lists:
+            return None
+
+        self.counter = 0
+        dummy = ListNode(0)
+        tail = dummy
+        heap = []
+
+        for node in lists:
+            if node:
+                self.counter += 1
+                heapq.heappush(heap, (node.val, self.counter, node))
+
+        while heap:
+            val, _, node = heapq.heappop(heap)
+            tail.next = node
+            tail = node
+
+            if node.next:
+                self.counter += 1
+                heapq.heappush(heap, (node.next.val, self.counter, node.next))
+
+        return dummy.next
