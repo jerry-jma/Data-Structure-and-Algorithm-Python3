@@ -65,3 +65,37 @@
     #         prev_interval.end = max(interval.end, prev_interval.end)
     #     else:
     #         result.append(interval)
+
+    # Solution 2: Heap
+    def mergeKSortedIntervalLists(self, intervals):
+        if not intervals:
+            return []
+
+        result = []
+        heap = []
+        for idx, arr in enumerate(intervals):
+            if len(arr) == 0:
+                continue
+            heapq.heappush(heap, (arr[0].start, arr[0].end, idx, 0))
+
+        while heap:
+            start, end, intervals_idx, arr_idx = heapq.heappop(heap)
+
+            self.merge_and_append(result, start, end, intervals, intervals_idx, arr_idx)
+
+            if arr_idx + 1 < len(intervals[intervals_idx]):
+                heapq.heappush(heap, (intervals[intervals_idx][arr_idx+1].start, \
+                intervals[intervals_idx][arr_idx+1].end, intervals_idx, arr_idx + 1))
+
+        return result
+
+    def merge_and_append(self, result, start, end, intervals, intervals_idx, arr_idx):
+        if len(result) == 0:
+                result.append(intervals[intervals_idx][arr_idx])
+
+        prev = result[-1]
+
+        if start > result[-1].end:
+            result.append(intervals[intervals_idx][arr_idx])
+        else:
+            prev.end = max(prev.end, end)
