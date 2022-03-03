@@ -64,3 +64,40 @@ class Solution:
         return result
 
 
+
+# Solution 2: Better
+    def merge_two_interval(self, list1: List[Interval], list2: List[Interval]) -> List[Interval]:
+        i, j = 0, 0
+        result = []
+
+        while i < len(list1) and j < len(list2):
+            if list1[i].start < list2[j].start:
+                self.mergeNow(list1[i], result)
+                i += 1
+            else:
+                self.mergeNow(list2[j], result)
+                j += 1
+
+        while i < len(list1):
+            self.mergeNow(list1[i], result)
+            i += 1
+
+        while j < len(list2):
+            self.mergeNow(list2[j], result)
+            j += 1
+
+        return result
+
+    def mergeNow(self, interval, result):
+        if len(result) == 0:
+            result.append(interval)
+            return
+
+        prev_interval = result[-1]
+        if interval.start <= prev_interval.end:
+            prev_interval.end = max(interval.end, prev_interval.end)
+        else:
+            result.append(interval)
+
+
+
