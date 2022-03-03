@@ -95,3 +95,45 @@ class Solution:
             j += 1
 
         return result
+
+   # Solution 3: merge two at a time
+    def mergek_sorted_arrays(self, arrays: List[List[int]]) -> List[int]:
+        if not arrays:
+            return []
+
+        while len(arrays) > 1:
+            new_arrays = []
+
+            for i in range(0, len(arrays), 2):
+                if i + 1 < len(arrays):
+                    new_list = self.mergeTwo(arrays[i], arrays[i+1])
+                else:
+                    new_list = arrays[i]
+                new_arrays.append(new_list)
+
+            arrays = new_arrays
+
+        return arrays[0]
+
+
+    def mergeTwo(self, arr1, arr2):
+        i, j = 0, 0
+        result = []
+
+        while i < len(arr1) and j < len(arr2):
+            if arr1[i] < arr2[j]:
+                result.append(arr1[i])
+                i += 1
+            else:
+                result.append(arr2[j])
+                j += 1
+
+        while i < len(arr1):
+            result.append(arr1[i])
+            i += 1
+
+        while j < len(arr2):
+            result.append(arr2[j])
+            j += 1
+
+        return result
