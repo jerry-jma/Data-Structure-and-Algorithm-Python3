@@ -28,6 +28,27 @@
 # Challenge
 # What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? How would you optimize the kthSmallest routine?
 
+# Solution 1: Iteration
+    def kthSmallest(self, root, k):
+        stack = []
+
+        while root:
+            stack.append(root)
+            root = root.left
+
+        for i in range(k - 1):
+            if not stack:
+                return None
+
+            curr_node = stack.pop()
+            node = curr_node.right
+
+            while node:
+                stack.append(node)
+                node = node.left
+
+        return stack[-1].val
+
    # Solution 2: dfs in_order travesal
     def kthSmallest(self, root, k):
         if not root:
