@@ -56,6 +56,29 @@ class Solution:
 
         return total
 
+ # Solution 2: two pointers
+    def trap_rain_water(self, heights: List[int]) -> int:
+        if not heights:
+            return 0
+
+        left, right = 0, len(heights) - 1
+        left_max = heights[left]
+        right_max = heights[right]
+
+        total = 0
+        while left <= right:
+            if left_max <= right_max:
+                left_max = max(left_max, heights[left])
+                total += left_max - heights[left]
+                # print(left_max - heights[left])
+                left += 1
+            else:
+                right_max = max(right_max, heights[right])
+                total += right_max - heights[right]
+                right -= 1
+
+        return total
+
 
 
 
