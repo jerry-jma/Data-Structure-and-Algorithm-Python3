@@ -47,3 +47,42 @@ class Solution:
     Solution 2: Quick Select
     def topk(self, nums: List[int], k: int) -> List[int]:
 
+# Solution 2: Quick Select
+    # Note: quick select won't sort the entire array
+    def topk(self, nums: List[int], k: int) -> List[int]:
+        if not nums:
+            return []
+
+        k = len(nums) - k
+        self.quick_select(nums, 0, len(nums)-1, k)
+
+        result = nums[k:]
+        # Note: quick select won't sort the entire array
+        # that's why we need sort the sliced result in reverse order
+        result.sort(reverse=True)
+
+        return result
+
+    def quick_select(self, nums, start, end, k):
+        if start == end:
+            return
+
+        left, right = start, end
+        mid = (start + end) // 2
+        pivot = nums[mid]
+
+        while left <= right:
+            while left <= right and nums[left] < pivot:
+                left += 1
+            while left <= right and nums[right] > pivot:
+                right -= 1
+            if left <= right:
+                nums[left], nums[right] = nums[right], nums[left]
+                left += 1
+                right -= 1
+
+        if k <= right:
+            self.quick_select(nums, start, right, k)
+        if k >= left:
+            self.quick_select(nums, left, end, k)
+
