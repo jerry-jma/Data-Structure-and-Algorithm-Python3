@@ -36,3 +36,32 @@ class Solution:
                 set1.discard(num)
 
         return result
+
+
+
+
+    # Solution 2: two pointers
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        nums1.sort()
+        nums2.sort()
+        result = []
+
+        index_1, index_2 = 0, 0
+
+        while index_1 < len(nums1) and index_2 < len(nums2):
+            if nums1[index_1] == nums2[index_2]:
+                result.append(nums1[index_1])
+                index_1 += 1
+                index_2 += 1
+
+                while index_1 < len(nums1) and nums1[index_1] == nums1[index_1 - 1]:
+                    index_1 += 1
+                while index_2 < len(nums2) and nums2[index_2] == nums2[index_2 - 1]:
+                    index_2 += 1
+
+            elif nums1[index_1] < nums2[index_2]:
+                index_1 += 1
+            else:
+                index_2 += 1
+
+        return result
