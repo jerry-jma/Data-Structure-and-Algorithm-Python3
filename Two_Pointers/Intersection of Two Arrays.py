@@ -65,3 +65,38 @@ class Solution:
                 index_2 += 1
 
         return result
+
+
+    # Solution 3: Binary search + Hashset
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        if len(nums1) >= len(nums2):
+            newNums = nums1
+            iterate_nums = nums2
+        if len(nums1) < len(nums2):
+            newNums = nums2
+            iterate_nums = nums1
+
+        newNums.sort()
+        result = set()
+
+        for num in iterate_nums:
+            if self.bianry_search(newNums, 0, len(newNums)-1, num):
+                result.add(num)
+
+        return list(result)
+
+    def bianry_search(self, newNums, start, end, num):
+        if not newNums or len(newNums) == 0:
+            return False
+
+        while start + 1 < end:
+            mid = (start+end) // 2
+            if newNums[mid] > num:
+                end = mid
+            else:
+                start = mid
+
+        if newNums[start] == num or newNums[end] == num:
+            return True
+
+        return False
