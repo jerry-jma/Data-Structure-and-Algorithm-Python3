@@ -70,3 +70,24 @@ class Solution:
                 if node.right:
                     queue.append(node.right)
 
+
+    # Solution 2: DFS
+    def min_depth(self, root: TreeNode) -> int:
+        if not root:
+            return 0
+
+        left_depth = self.min_depth(root.left)
+        right_depth = self.min_depth(root.right)
+
+        if left_depth and right_depth:
+            return min(left_depth, right_depth) + 1
+        # this else could be used to replaced all the remaining conditions
+        # else:
+        #     return max(left_depth, right_depth) + 1
+
+        elif left_depth == 0:
+            return right_depth + 1
+        elif right_depth == 0:
+            return left_depth + 1
+        else:
+            return 1
